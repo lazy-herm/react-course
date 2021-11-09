@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./ExpenseGroup.css";
-import ExpenseItem from "./ExpenseItem";
+import ExpensesList from './ExpensesList';
 import ExpenseFilter from "../ExpenseFilter/ExpenseFilter";
 
 function ExpenseGroup(props) {
@@ -15,20 +15,7 @@ function ExpenseGroup(props) {
   return (
     <div className="expenses">
       <ExpenseFilter setYear={filterYear} onYearChange={getFilterYear} />
-      {filteredExpenses.length === 0 ? (
-        <p>No Expenses Found.</p>
-      ) : (
-        filteredExpenses.map((exp) => {
-          return (
-            <ExpenseItem
-              key={exp.id}
-              title={exp.title}
-              amount={exp.amount}
-              date={exp.date}
-            />
-          );
-        })
-      )}
+      <ExpensesList items={filteredExpenses} />
     </div>
   );
 }
